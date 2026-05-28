@@ -7,7 +7,7 @@ import System from './pages/System'
 import SystemDetails from './pages/SystemDetails'
 import CaseStudies from './pages/CaseStudies'
 import CaseStudiesDetails from './pages/CaseStudiesDetails'
-
+import Footer from './components/Footer'
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/admin" element={<Admin/>} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
