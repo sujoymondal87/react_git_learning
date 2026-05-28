@@ -7,10 +7,10 @@ const Navbar = () => {
         Sujoy Mondal
       </div>
       <div className="flex items-center gap-4">
-        <Link to="/work">Work</Link>
+        <Link to="/">Home</Link>
         <Link to="/system">System</Link>
-        <Link to="/writing">Writing</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/case-studies">Case Studies</Link>
+        <Link to="/contact">Contact</Link>  
       </div>
     </div>
   )
