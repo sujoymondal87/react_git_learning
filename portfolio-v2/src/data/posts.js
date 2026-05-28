@@ -1,0 +1,8 @@
+export const posts = [
+    { id: '01', slug: 'floor-detection', title: 'GPS altitude indoors is noisy. We built floor detection on it anyway.', excerpt: 'How we used GPS elevation and median smoothing to detect floors without beacons.', timestamp: '2026-05-28 10:00:00',imgUrl: 'https://via.placeholder.com/150' },
+    { id: '02', slug: 'ticket-lifecycle', title: 'Payment is the wrong event to start a ticket validity timer.', excerpt: 'Why we separated payment from activation in our ticket system.', timestamp: '2026-05-27 10:00:00',imgUrl: 'https://via.placeholder.com/150' },
+    { id: '03', slug: 'ticket-lifecycle_02', title: 'Payment is the wrong event to start a ticket validity timer.', excerpt: 'Why we separated payment from activation in our ticket system.', timestamp: '2026-04-28 10:00:00',imgUrl: 'https://via.placeholder.com/150' },
+    { id: '04', slug: 'floor-detection_02', title: 'GPS altitude indoors is noisy. We built floor detection on it anyway.', excerpt: 'How we used GPS elevation and median smoothing to detect floors without beacons.', timestamp: '2025-05-28 10:00:00',imgUrl: 'https://via.placeholder.com/150' },
+    { id: '05', slug: 'ticket-lifecycle_03', title: 'Payment is the wrong event to start a ticket validity timer.', excerpt: 'Why we separated payment from activation in our ticket system.', timestamp: '2026-05-28 12:00:00',imgUrl: 'https://via.placeholder.com/150' },
+    { id: '06', slug: 'ticket-lifecycle_04', title: 'Payment is the wrong event to start a ticket validity timer.', excerpt: 'Why we separated payment from activation in our ticket system.', timestamp: '2026-05-28 15:00:00',imgUrl: 'https://via.placeholder.com/150' }
+  ]
