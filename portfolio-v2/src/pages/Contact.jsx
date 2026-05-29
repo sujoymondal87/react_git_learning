@@ -42,6 +42,7 @@ function Contact() {
           phone: ""
         });
         setSuccess(true);
+        setError(null);
       })
       .catch((error) => {
         console.error('Error:', error);
