@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 function Contact() {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     fullName: "",
     content: "",
@@ -18,12 +20,40 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    fetch('http://localhost:3000/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fullName: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        message: form.content
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        setForm({
+          fullName: "",
+          content: "",
+          email: "",
+          phone: ""
+        });
+        setSuccess(true);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setError(error.message);
+      });
   };
 
   return (
     <section className="flex flex-col items-center justify-center py-10">
       <h2 className="text-2xl font-bold mb-6">Contact</h2>
+      {success && <p className="text-green-500">Message sent successfully</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
       <form
         className="flex flex-col gap-4 w-full max-w-md bg-gray-100 p-6 rounded shadow"
         onSubmit={handleSubmit}
