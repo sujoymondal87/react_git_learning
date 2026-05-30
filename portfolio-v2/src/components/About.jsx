@@ -1,11 +1,12 @@
 export default function About() {
-    return (
-        <section className="flex flex-col items-center justify-center">
-          <div className="flex flex-col gap-4 mt-4">
-            <h3 className="text-2xl font-bold">Who I am?</h3>
-            <p className="text-lg text-gray-400">I've built a no-code app builder as a products for my 2 members company. It has many sub systems like Offline Architecture, Runtime distributions, analytics, AR , Multi LLM model orchestration, etc.</p>
-            <p className="text-lg text-gray-400">All of systems architecture either clients needs or my partners idea. So all those thought behind the architecture and the development was built by me over the last decade.</p>
+  return (
+      <section className="py-16 border-b border-gray-800">
+          <p className="text-amber-500 text-sm font-mono mb-4">01 / About</p>
+          <h2 className="text-3xl font-bold text-white mb-6">Who I am</h2>
+          <div className="max-w-2xl">
+              <p className="text-gray-400 mb-4 leading-relaxed">I built a no-code app builder platform for a 2-person company. The platform serves museums, cathedrals, tourism institutions and retail businesses across Europe — offline runtimes, AI agents, AR, multilingual TTS, payments, real-time sync, geofencing. All configurable without code.</p>
+              <p className="text-gray-400 leading-relaxed">Every architectural decision, implementation, debugging session and production deployment over the last decade was mine. Product direction came from my co-founder. Everything else came from me.</p>
           </div>
-        </section>
-    )
+      </section>
+  )
 }  

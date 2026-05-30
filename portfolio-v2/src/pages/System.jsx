@@ -1,7 +1,8 @@
+import Layout from "../components/Layout";
 export default function System() {
   return (
-    <div>
+    <Layout>
       <h1>System</h1>
-    </div>
+    </Layout>
   )
 }
