@@ -20,7 +20,7 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:3000/contact', {
+    fetch('https://reactgitlearning-production.up.railway.app/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
