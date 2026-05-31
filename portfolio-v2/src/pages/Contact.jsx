@@ -49,7 +49,7 @@ function Contact() {
       })
       .catch((error) => {
         console.error('Error:', error);
-        setError(error.message);
+        setError('Something went wrong. Please try again or email me directly.');
       })
       .finally(() => {
         setLoading(false);
