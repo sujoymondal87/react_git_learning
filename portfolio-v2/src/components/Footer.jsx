@@ -29,7 +29,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 pt-6">
-                    <p className="text-gray-500 text-xs">© 2026 Sujoy Mondal</p>
+                    <p className="text-gray-500 text-xs">© 2026 Sujoy Kumar Mondal</p>
                 </div>
             </div>
         </footer>
