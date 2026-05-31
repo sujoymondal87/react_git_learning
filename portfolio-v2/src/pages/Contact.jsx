@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
     fullName: "",
     content: "",
@@ -21,6 +22,7 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetch('https://reactgitlearning-production.up.railway.app/contact', {
       method: 'POST',
       headers: {
@@ -47,7 +49,10 @@ function Contact() {
       })
       .catch((error) => {
         console.error('Error:', error);
-        setError(error.message);
+        setError('Something went wrong. Please try again or email me directly.');
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -82,9 +87,9 @@ function Contact() {
               className="bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:border-amber-500"
               required />
           </div>
-          <button type="submit"
-            className="bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 rounded-lg transition">
-            Send Message
+          <button type="submit" disabled={loading}
+            className="bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
         </form>
       </div>
