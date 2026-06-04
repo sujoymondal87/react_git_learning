@@ -6,25 +6,23 @@ export default function Footer() {
         <footer className="border-t border-gray-800 mt-16">
             <div className="max-w-[1100px] mx-auto px-6 py-12">
                 <div className="flex justify-between items-start mb-8">
-                    <div>
-                        <p className="text-amber-500 font-bold text-xl mb-2">Sujoy Mondal</p>
-                        <p className="text-gray-400 text-sm max-w-sm">Building resilient systems, end-to-end, for a decade.</p>
+                    <div className="max-w-sm">
+                        <p className="text-amber-500 font-bold text-2xl mb-2">Sujoy Mondal</p>
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                            Building production systems end-to-end for over a decade. Offline-first, AR, AI orchestration, real-time sync.
+                        </p>
                     </div>
-                    <div className="flex gap-8">
+                    <div className="flex gap-16">
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-sm font-semibold mb-1">Navigation</p>
-                            <Link className="text-gray-400 text-sm hover:text-amber-500 transition" to="/">Home</Link>
-                            <Link className="text-gray-400 text-sm hover:text-amber-500 transition" to="/case-studies">Case Studies</Link>
-                            <Link className="text-gray-400 text-sm hover:text-amber-500 transition" to="/contact">Contact</Link>
+                            <Link className="text-gray-300 text-sm hover:text-amber-500 transition" to="/">Home</Link>
+                            <Link className="text-gray-300 text-sm hover:text-amber-500 transition" to="/case-studies">Case Studies</Link>
+                            <Link className="text-gray-300 text-sm hover:text-amber-500 transition" to="/contact">Contact</Link>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-sm font-semibold mb-1">Connect</p>
-                            <a className="text-gray-400 text-sm hover:text-amber-500 transition" href="https://linkedin.com/in/sujoymondal-tech" target="_blank" rel="noreferrer">
-                                <FaLinkedin className="inline-block mr-1" /> LinkedIn
-                            </a>
-                            <a className="text-gray-400 text-sm hover:text-amber-500 transition" href="https://github.com/sujoymondal87" target="_blank" rel="noreferrer">
-                                <FaGithub className="inline-block mr-1" /> GitHub
-                            </a>
+                            <a className="text-gray-300 text-sm hover:text-amber-500 transition flex items-center gap-2" href="https://linkedin.com/in/sujoymondal-tech" target="_blank" rel="noreferrer"><FaLinkedin />LinkedIn</a>
+                            <a className="text-gray-300 text-sm hover:text-amber-500 transition flex items-center gap-2" href="https://github.com/sujoymondal87" target="_blank" rel="noreferrer"><FaGithub />GitHub</a>
                         </div>
                     </div>
                 </div>
