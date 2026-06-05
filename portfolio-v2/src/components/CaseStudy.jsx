@@ -24,16 +24,16 @@ export default function CaseStudy() {
         fetchPosts()
     }, [])
     return (
-        <section className="py-16">
+        <section className="pt-8 md:pt-16 pb-2 md:pb-4">
             <p className="text-amber-500 text-sm font-mono mb-4">{totalPosts} / Case Studies</p>
             <h2 className="text-3xl font-bold text-white mb-10">Engineering decisions. In public.</h2>
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {posts
                     .map((post) => (
                         <Card key={post.id} url="case-studies" id={post.id} slug={post.slug} imgUrl={post.imgurl} name={post.title} desc={post.content} timestamp={post.created_at} />
                 ))}
             </div>
-            <Link to="/case-studies" className="text-amber-500 text-sm font-mono hover:underline">
+            <Link to="/case-studies" className="text-amber-500 text-sm font-mono hover:underline mt-6 inline-block">
                 View all case studies →
             </Link>
         </section>
