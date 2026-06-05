@@ -13,10 +13,10 @@ const capabilities = [
 
 export default function Capabilities() {
   return (
-    <section className="py-16 border-b border-gray-800">
+    <section className="py-8 md:py-16 border-b border-gray-800">
       <p className="text-amber-500 text-sm font-mono mb-4">What I Build</p>
       <h2 className="text-3xl font-bold text-white mb-10">Platform Capabilities</h2>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {capabilities.map((cap) => (
           <div key={cap.name} className="bg-gray-800 border border-gray-700 hover:border-amber-500 p-6 rounded-lg transition">
             <div className="text-amber-500 mb-3">{cap.icon}</div>

@@ -3,16 +3,16 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 export default function Footer() {
     return (
-        <footer className="border-t border-gray-800 mt-16">
-            <div className="max-w-[1100px] mx-auto px-6 py-12">
-                <div className="flex justify-between items-start mb-8">
+        <footer className="border-t border-gray-800 mt-6">
+            <div className="max-w-[1100px] mx-auto px-6 py-8 md:py-12">
+                <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-8">
                     <div className="max-w-sm">
                         <p className="text-amber-500 font-bold text-2xl mb-2">Sujoy Mondal</p>
                         <p className="text-gray-300 text-sm leading-relaxed">
                             Building production systems end-to-end for over a decade. Offline-first, AR, AI orchestration, real-time sync.
                         </p>
                     </div>
-                    <div className="flex gap-16">
+                    <div className="flex gap-8 md:gap-16 w-full md:w-auto justify-between md:justify-start mt-6 md:mt-0">
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-sm font-semibold mb-1">Navigation</p>
                             <Link className="text-gray-300 text-sm hover:text-amber-500 transition" to="/">Home</Link>
@@ -27,7 +27,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 pt-6">
-                    <p className="text-gray-500 text-xs">© 2026 Sujoy Kumar Mondal</p>
+                    <p className="text-gray-500 text-xs text-center">© 2026 Sujoy Kumar Mondal</p>
                 </div>
             </div>
         </footer>
