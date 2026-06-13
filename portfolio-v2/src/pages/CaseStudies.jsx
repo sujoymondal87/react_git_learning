@@ -14,7 +14,10 @@ export default function CaseStudy() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const { data, error } = await supabase.from('posts').select('*')
+                const { data, error } = await supabase
+                .from('posts')
+                .select('*, post_images(url, sort_order)')
+                .order('created_at', { ascending: false })
                 if(error) throw error
                 setPosts(data)
             } catch(error) {
@@ -42,7 +45,9 @@ export default function CaseStudy() {
                         .slice()
                         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                         .map((post) => (
-                            <Card key={post.id} url="case-studies" id={post.id} slug={post.slug} imgUrl={post.imgurl} name={post.title} desc={post.content} timestamp={post.created_at} />
+                            <Card key={post.id} url="case-studies" id={post.id} slug={post.slug} 
+                            imgUrl={post.post_images?.find(img => img.sort_order === 0)?.url || post.post_images?.[0]?.url || post.imgurl} 
+                            name={post.title} desc={post.content} timestamp={post.created_at} />
                     ))}
                 </div>
             </div>

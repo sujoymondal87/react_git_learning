@@ -11,7 +11,12 @@ export default function CaseStudy() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const { data, error, count } = await supabase.from('posts').select('*', { count: 'exact' }).order('created_at', { ascending: false }).limit(6)
+                const { data, error, count } = await supabase
+                .from('posts')
+                .select('*, post_images(url, sort_order)', { count: 'exact' })
+                .eq('post_images.sort_order', 0)
+                .order('created_at', { ascending: false })
+                .limit(6)
                 setTotalPosts(count)
                 if(error) throw error
                 setPosts(data)
@@ -30,7 +35,7 @@ export default function CaseStudy() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {posts
                     .map((post) => (
-                        <Card key={post.id} url="case-studies" id={post.id} slug={post.slug} imgUrl={post.imgurl} name={post.title} desc={post.content} timestamp={post.created_at} />
+                        <Card key={post.id} url="case-studies" id={post.id} slug={post.slug} imgUrl={post.post_images?.find(img => img.sort_order === 0)?.url || post.post_images?.[0]?.url || post.imgurl} name={post.title} desc={post.content} timestamp={post.created_at} />
                 ))}
             </div>
             <Link to="/case-studies" className="text-amber-500 text-sm font-mono hover:underline mt-6 inline-block">
