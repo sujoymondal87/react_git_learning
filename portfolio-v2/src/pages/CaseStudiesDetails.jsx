@@ -4,18 +4,29 @@ import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import ReactMarkdown from 'react-markdown'
 import SEO from '../components/SEO'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Thumbs } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/thumbs'
 
 export default function CaseStudiesDetails() {
     const { slug } = useParams()
     const [post, setPost] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [images, setImages] = useState([])
+    const [thumbsSwiper, setThumbsSwiper] = useState(null)
     useEffect(() => {
         const fetchPost = async () => {
             try {
                 const { data, error } = await supabase.from('posts').select('*').eq('slug', slug).single()
                 if(error) throw error
                 setPost(data)
+                const { data: images, error: imagesError } = await supabase.from('post_images').select('*').eq('post_id', data.id).order('sort_order', { ascending: true })
+                if(imagesError) throw imagesError
+                setImages(images)
             } catch(error) {
                 setError(error.message)
             } finally {
@@ -43,28 +54,78 @@ export default function CaseStudiesDetails() {
     
                         {/* Title */}
                         <h1 className="text-4xl font-bold text-white mb-8 max-w-3xl leading-tight">{post.title}</h1>
-    
-                        {/* Image */}
-                        {post.imgurl && (
-                            <img
-                                src={post.imgurl}
-                                alt={post.title}
-                                className="w-full h-auto rounded-lg mb-12 object-contain"
-                            />
+
+                        {images.length > 0 && (
+                            <div>
+                                {/* Main Swiper */}
+                                <Swiper
+                                    initialSlide={1}
+                                    spaceBetween={10}
+                                    navigation={true}
+                                    pagination={{
+                                        clickable: true,
+                                        dynamicBullets: true,
+                                    }}
+                                    thumbs={{ swiper: thumbsSwiper }}
+                                    modules={[Navigation, Pagination, Thumbs]}
+                                    className="mb-4"
+                                    // Adjust pagination for mobile only
+                                    breakpoints={{
+                                        640: { // >= md
+                                            pagination: false,
+                                        },
+                                    }}
+                                >
+                                    {images.map((image) => (
+                                        <SwiperSlide key={image.id}>
+                                            <img
+                                                src={image.url}
+                                                alt={image.caption}
+                                                className="w-full h-auto rounded-lg object-contain mb-4"
+                                            />
+                                            {image.caption && (
+                                                <div className="text-gray-200 text-center text-sm mt-2">
+                                                    {image.caption}
+                                                </div>
+                                            )}
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                                {/* Thumbnail Swiper - desktop only */}
+                                <div className="hidden md:block">
+                                    <Swiper
+                                        onSwiper={setThumbsSwiper}
+                                        spaceBetween={8}
+                                        slidesPerView={Math.min(images.length, 8)}
+                                        watchSlidesProgress={true}
+                                        modules={[Thumbs]}
+                                        className="my-2"
+                                    >
+                                        {images.map((image) => (
+                                            <SwiperSlide key={image.id}>
+                                                <img
+                                                    src={image.url}
+                                                    alt={image.caption}
+                                                    className="w-20 h-20 rounded object-cover border border-gray-700 cursor-pointer"
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                </div>
+                            </div>
                         )}
+              
     
                         {/* Content */}
-                        <div className="max-w-3xl">
-                            <div className="prose prose-invert prose-lg max-w-none
-                                prose-headings:text-white prose-headings:font-bold
-                                prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
-                                prose-li:text-gray-300
-                                prose-strong:text-white
-                                prose-code:text-amber-400">
-                                <ReactMarkdown>
-                                    {post.content}
-                                </ReactMarkdown>
-                            </div>
+                        <div className="prose prose-invert prose-lg max-w-none
+                            prose-headings:text-white prose-headings:font-bold
+                            prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
+                            prose-li:text-gray-300
+                            prose-strong:text-white
+                            prose-code:text-amber-400">
+                            <ReactMarkdown>
+                                {post.content}
+                            </ReactMarkdown>
                         </div>
                     </div>
                 </Layout>
