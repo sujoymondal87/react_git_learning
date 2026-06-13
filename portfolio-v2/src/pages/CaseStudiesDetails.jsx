@@ -96,12 +96,12 @@ export default function CaseStudiesDetails() {
                                     <Swiper
                                         onSwiper={setThumbsSwiper}
                                         spaceBetween={6}
-                                        slidesPerView={Math.min(images.length, 8)}
                                         watchSlidesProgress={true}
                                         modules={[Thumbs]}
                                         centeredSlides={false}
                                         className="mx-auto mt-4"
-                                        style={{ width: `${Math.min(images.length, 8) * 70}px` }}
+                                        slidesPerView={images.length}
+                                        style={{ width: `${images.length * 70}px` }}
                                     >
                                         {images.map((image) => (
                                             <SwiperSlide key={image.id} className="!w-16">
