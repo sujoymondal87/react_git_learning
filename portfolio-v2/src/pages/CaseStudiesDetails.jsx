@@ -81,7 +81,7 @@ export default function CaseStudiesDetails() {
                                             <img
                                                 src={image.url}
                                                 alt={image.caption}
-                                                className="w-full h-auto rounded-lg object-contain mb-4"
+                                                className="w-full max-h-[700px] rounded-lg object-contain mb-4"
                                             />
                                             {image.caption && (
                                                 <div className="text-gray-200 text-center text-sm mt-2">
