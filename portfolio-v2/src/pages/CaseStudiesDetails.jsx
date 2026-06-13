@@ -92,21 +92,23 @@ export default function CaseStudiesDetails() {
                                     ))}
                                 </Swiper>
                                 {/* Thumbnail Swiper - desktop only */}
-                                <div className="hidden md:block">
+                                <div className="hidden md:block mt-4 mb-8">
                                     <Swiper
                                         onSwiper={setThumbsSwiper}
-                                        spaceBetween={8}
+                                        spaceBetween={6}
                                         slidesPerView={Math.min(images.length, 8)}
                                         watchSlidesProgress={true}
                                         modules={[Thumbs]}
-                                        className="my-2"
+                                        centeredSlides={false}
+                                        className="mx-auto mt-4"
+                                        style={{ width: `${Math.min(images.length, 8) * 70}px` }}
                                     >
                                         {images.map((image) => (
-                                            <SwiperSlide key={image.id}>
+                                            <SwiperSlide key={image.id} className="!w-16">
                                                 <img
                                                     src={image.url}
                                                     alt={image.caption}
-                                                    className="w-20 h-20 rounded object-cover border border-gray-700 cursor-pointer"
+                                                    className="w-16 h-16 rounded object-cover border border-gray-700 cursor-pointer"
                                                 />
                                             </SwiperSlide>
                                         ))}
