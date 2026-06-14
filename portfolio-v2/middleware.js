@@ -14,7 +14,7 @@ export default async function middleware(request) {
 
     try {
         const res = await fetch(
-            `${SUPABASE_URL}/rest/v1/posts?slug=eq.${slug}&select=title,content,imgurl&limit=1`,
+            `${SUPABASE_URL}/rest/v1/posts?slug=eq.${slug}&select=title,content,imgurl,post_images(url,sort_order)&limit=1`,
             {
                 headers: {
                     apikey: SUPABASE_ANON_KEY,
@@ -24,6 +24,10 @@ export default async function middleware(request) {
         )
         const posts = await res.json()
         const post = posts?.[0]
+        
+        const coverImage = post.post_images?.length > 0
+            ? post.post_images.sort((a, b) => a.sort_order - b.sort_order)[0].url
+            : post.imgurl ?? ''
 
         if (!post) {
             // fall through to SPA
@@ -33,13 +37,20 @@ export default async function middleware(request) {
         }
 
         const title = post.title
-        const description = post.content?.slice(0, 155) ?? ''
-        const image = post.imgurl ?? ''
+        const description = (post.content ?? '')
+            .replace(/#{1,6}\s+/g, '')        // strip headings
+            .replace(/\*\*(.+?)\*\*/g, '$1')  // strip bold
+            .replace(/\*(.+?)\*/g, '$1')      // strip italic
+            .replace(/\[(.+?)\]\(.+?\)/g, '$1') // strip links
+            .replace(/\n+/g, ' ')             // collapse newlines
+            .trim()
+            .slice(0, 155)
+        const image = coverImage ?? ''
         const pageUrl = `https://sujoymondal-tech.vercel.app${url.pathname}`
 
         const htmlRes = await fetch(new URL('/', request.url).toString())
         let html = await htmlRes.text()
-        
+
         html = html
         .replace(/<meta property="og:title"[^>]*>/i, `<meta property="og:title" content="${title}" />`)
         .replace(/<meta property="og:description"[^>]*>/i, `<meta property="og:description" content="${description}" />`)
