@@ -1,5 +1,5 @@
-const SUPABASE_URL = process.env.SUPABASE_URL
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY
+const SUPABASE_URL = globalThis.SUPABASE_URL ?? process.env.SUPABASE_URL
+const SUPABASE_ANON_KEY = globalThis.SUPABASE_ANON_KEY ?? process.env.SUPABASE_ANON_KEY
 
 export const config = {
     matcher: '/case-studies/:slug*'
